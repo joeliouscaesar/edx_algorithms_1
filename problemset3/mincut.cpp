@@ -190,12 +190,12 @@ int karger_cut_algo(string file){
 		}
 		newfile.close();
 	}else{
-		cout<<"couldn't open file: "<<file <<endl;
+		// cout<<"couldn't open file: "<<file <<endl;
 		return(-1);
 	}
 	
-	cout<<"num_edges: "<<num_edges<<" size of edges: "<<edges.size()<<endl;
-	cout<<"num_vertices: "<<num_vertices<<" size of nodes: "<<nodes.size()<<endl;
+	// cout<<"num_edges: "<<num_edges<<" size of edges: "<<edges.size()<<endl;
+	// cout<<"num_vertices: "<<num_vertices<<" size of nodes: "<<nodes.size()<<endl;
 
 	////////////////////////////////////////////
 	//Karger Algorithm
@@ -292,7 +292,7 @@ int karger_cut_algo(string file){
 	}
 	
 	//output!
-	cout<<"num edges across cut: "<<num_edges<<endl;
+	// cout<<"num edges across cut: "<<num_edges<<endl;
 	
 	return(num_edges);
 }
@@ -311,8 +311,15 @@ int main(int argc, char* argv[]){
 		file = argv[1]; 
 	}
 	
-	//call the algo
-	karger_cut_algo(file); 
+	int val; 
+	int min = karger_cut_algo(file);
+	for(int i = 0; i < 10000; i++){
+		val = karger_cut_algo(file);
+		if(val < min)
+			min = val; 
+	}
+	
+	cout<<"min after 10000 iterations:"<<min<<endl;
 	
 	return(0); 
 }
